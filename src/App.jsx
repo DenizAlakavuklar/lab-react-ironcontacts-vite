@@ -1,34 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState } from 'react';
 import './App.css'
+import contacts from './contacts.json'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [firstFive, setFirstFive] = useState (contacts.slice(0,5));
+  console.log(firstFive)
+  return <div className='App'>
+<h1>Ironcontacts</h1>
+<table>
+<thead>
+  <tr>
+    <th>Picture</th>
+    <th>Name</th>
+    <th>Popularity</th>
+  </tr>
+</thead>
+<tbody>
+<tr>
+  <td>
+    <img className="photo" src={firstFive[0].pictureUrl} alt="celeb" />
+  </td>
+  <td> {firstFive[0].name}</td>
+  <td> {firstFive[0].popularity}</td>
+  </tr>
+  <tr>
+  <td>
+    <img className="photo" src={firstFive[1].pictureUrl} alt="celeb" />
+  </td>
+  <td> {firstFive[1].name}</td>
+  <td> {firstFive[1].popularity}</td>
+  </tr>
+  <tr>
+  <td>
+    <img className="photo" src={firstFive[2].pictureUrl} alt="celeb" />
+  </td>
+  <td> {firstFive[2].name}</td>
+  <td> {firstFive[2].popularity}</td>
+  </tr>
+  <tr>
+  <td>
+    <img className="photo" src={firstFive[3].pictureUrl} alt="celeb" />
+  </td>
+  <td> {firstFive[3].name}</td>
+  <td> {firstFive[3].popularity}</td>
+  </tr>
+  <tr>
+  <td>
+    <img className="photo" src={firstFive[4].pictureUrl} alt="celeb" />
+  </td>
+  <td> {firstFive[4].name}</td>
+  <td> {firstFive[4].popularity}</td>
+  </tr>
+</tbody>
+</table>
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+  </div>
 }
-
 export default App
