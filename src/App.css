@@ -21,6 +21,9 @@
 .photo {
   height: 80px
 }
+.icon {
+  height: 50px
+}
 
 @keyframes logo-spin {
   from {
