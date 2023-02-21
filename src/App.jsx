@@ -43,6 +43,14 @@ function App() {
    setFirstFive(sortedFirstFive);
   };
 
+  const deleteContact = (celebId) => {
+    const afterDeletedContacts = firstFive.filter(celeb => {
+      return celeb.id !== celebId;
+    });
+
+    setFirstFive(afterDeletedContacts);
+  };
+
   return <div className='App'>
 
     <h1>Ironcontacts</h1>
@@ -67,19 +75,21 @@ function App() {
           <th>Popularity</th>
           <th>Won an Oscar</th>
           <th>Won an Emmy</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {firstFive.map((celeb) => {
           return (
-            <tr>
+            <tr  key={firstFive.id}>
               <td>
                 <img className="photo" src={celeb.pictureUrl} alt="celeb" />
               </td>
               <td> {celeb.name}</td>
               <td> {celeb.popularity}</td>
-              {celeb.wonOscar && <td> <img src={icon} alt="icon" className='icon' /></td>}
-              {celeb.wonEmmy && <td> <img src={icon} alt="icon" className='icon' /></td>}
+             <td> {celeb.wonOscar ? <img src={icon} alt="icon" className='icon' /> :null }</td>
+             <td> {celeb.wonEmmy ? <img src={icon} alt="icon" className='icon' /> :null }</td>
+              <td><button  onClick={() => deleteContact(celeb.id)} >Delete</button></td>
             </tr>
           )
         })}
