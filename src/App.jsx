@@ -3,6 +3,18 @@ import './App.css'
 import contacts from './contacts.json'
 import icon from './assets/icon.jpg'
 
+function sortbyName(array) {
+  return (array.sort((name1, name2) => {
+    if (name1.name < name2.name) {
+      return -1;
+    }
+    if (name1.name > name2.name) {
+      return 1;
+    }
+    return 0;
+  }))
+}
+
 function App() {
   const [firstFive, setFirstFive] = useState(contacts.slice(0, 5));
   const [afterFive, setAfterFive] = useState(contacts.slice(5));
@@ -21,37 +33,15 @@ function App() {
     setAfterFive(filteredCelebs)
   }
 
+  const sortbyName = () => {
+    const sortedFirstFive = [...firstFive].sort((a, b) => a.name.localeCompare(b.name));
+   setFirstFive(sortedFirstFive);
+  };
 
-  function sortbyName(array) {
-    return (array.sort((name1, name2) => {
-      if (name1.name < name2.name) {
-        return -1;
-      }
-      if (name1.name > name2.name) {
-        return 1;
-      }
-      return 0;
-    }))
-  }
-
-  function sortbyPopularity(array) {
-    return (array.sort((name1, name2) => {
-      if (name1.popularity < name2.popularity) {
-        return -1;
-      }
-      if (name1.popularity > name2.popularity) {
-        return 1;
-      }
-      return 0;
-    }))
-  }
-
-  console.log("hello")
-  console.log(sortbyName(firstFive))
-
-
-  const sortedArray = sortbyName(firstFive)
-
+  const sortbyPop = () => {
+    const sortedFirstFive = [...firstFive].sort((a, b) => b.popularity - a.popularity);
+   setFirstFive(sortedFirstFive);
+  };
 
   return <div className='App'>
 
@@ -63,6 +53,10 @@ function App() {
 
     <button type="submit" onClick={sortbyName} >
       Sort by Name
+    </button>
+
+    <button type="submit" onClick={sortbyPop} >
+      Sort by Pop
     </button>
 
      <table>
