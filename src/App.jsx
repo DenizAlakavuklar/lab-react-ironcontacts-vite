@@ -7,9 +7,6 @@ function App() {
   const [firstFive, setFirstFive] = useState(contacts.slice(0, 5));
   const [afterFive, setAfterFive] = useState(contacts.slice(5));
 
-  console.log(firstFive)
-  console.log(afterFive)
-
   function addRandom() {
 
     let randomIndex = Math.floor((Math.random() * afterFive.length))
@@ -23,15 +20,52 @@ function App() {
     })
     setAfterFive(filteredCelebs)
   }
+
+
+  function sortbyName(array) {
+    return (array.sort((name1, name2) => {
+      if (name1.name < name2.name) {
+        return -1;
+      }
+      if (name1.name > name2.name) {
+        return 1;
+      }
+      return 0;
+    }))
+  }
+
+  function sortbyPopularity(array) {
+    return (array.sort((name1, name2) => {
+      if (name1.popularity < name2.popularity) {
+        return -1;
+      }
+      if (name1.popularity > name2.popularity) {
+        return 1;
+      }
+      return 0;
+    }))
+  }
+
+  console.log("hello")
+  console.log(sortbyName(firstFive))
+
+
+  const sortedArray = sortbyName(firstFive)
+
+
   return <div className='App'>
 
     <h1>Ironcontacts</h1>
 
     <button type="submit" onClick={addRandom} >
-      Add
+      Add a Random Celebrity
     </button>
 
-    <table>
+    <button type="submit" onClick={sortbyName} >
+      Sort by Name
+    </button>
+
+     <table>
       <thead>
         <tr>
           <th>Picture</th>
